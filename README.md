@@ -8,8 +8,9 @@ then go to: tools > Avro Phonetic Options > Edit/Import Autocorrect Entries</b><
 
 ![img 1](https://github.com/Botbang/avro-bangla-autocorrect-dictionary/blob/main/shot%201.png)
 
-Then 
-<h2> <b>click on Import and select the autodict.dct file</b> </h2>
+<h2> 
+  <I>Then,</I><br>
+  <b>click on Import and select the autodict.dct file</b> </h2>
 
 ![img 2](https://github.com/Botbang/avro-bangla-autocorrect-dictionary/blob/main/shot%202.png)
 
