@@ -1,37 +1,37 @@
-## Welcome to GitHub Pages
+# avro-bangla-autocorrect-dictionary
+The Avro Keyboard is a blessing when it comes to type in Bangla. However, the built-in autocorrect dictionary in the Avro keyboard doesn't contain enough words (2473 words to be exact). And, considering the huge volume and the complex spelling rules of Bangla words, it's not quite handy while someone is typing fast or doesn't know enough about Bangla spelling. So, this is my tiny approach to enrich the autocorrect dictionary. This file contains the correct spellings of the most commonly used Bangla words (and the words that are generally mistaken).<br> 
 
-You can use the [editor on GitHub](https://github.com/Botbang/avro-bangla-autocorrect-dictionary/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+It also contains the Bangla spelling of some commonly used English words. So, if you're not sure about the Bangla spelling of an English word, just type it in English (if the file contains the word, it'll give you the correct spelling).<br>
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+***
 
-### Markdown
+> <I>This work is a tribute to the creator and the developers of the Avro Keyboard.</I> 
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+***
 
-```markdown
-Syntax highlighted code block
+<h3>Update log:</h3>
+<I>update: 04-05-21, <b>1469</b> new words added</I><br>
+<I>update: 02-05-21, <b>1000</b> new words added</I><br>
+<I>Current dictionary size: <b>4949 words</b></I><br>
 
-# Header 1
-## Header 2
-### Header 3
+***
 
-- Bulleted
-- List
+<h1>To use the Dictionary file</h1>
 
-1. Numbered
-2. List
+<h2> <b>First: right click on avro icon 
+then go to: tools > Avro Phonetic Options > Edit/Import Auto Correct Entries.<br>
+  Also check the 'Dictionary mode is default in suggestion' field and don't forget to 'Enable Auto Correct', as shown below.</b></h2>
 
-**Bold** and _Italic_ and `Code` text
+![img 1](https://github.com/Botbang/avro-bangla-autocorrect-dictionary/blob/main/shot%201.png)
+***
+<h2> 
+  <I>Then,</I><br>
+  <b>click on Import and select the autodict.dct file</b> </h2>
 
-[Link](url) and ![Image](src)
-```
+![img 2](https://github.com/Botbang/avro-bangla-autocorrect-dictionary/blob/main/shot%202.png)
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+<h3>and you should be good to go.</h3>
 
-### Jekyll Themes
+***
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Botbang/avro-bangla-autocorrect-dictionary/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+<h1>Enjoy!</h1>
