@@ -35,3 +35,4 @@ then go to: tools > Avro Phonetic Options > Edit/Import Auto Correct Entries.<br
 ***
 
 <h1>Enjoy!</h1>
+<meta name="google-site-verification" content="6AJYBV2aIm1Q7igw7_4O20TAPuBRF2v5VeeSXGcJt2A" />
