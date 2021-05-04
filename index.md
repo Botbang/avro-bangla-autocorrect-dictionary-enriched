@@ -1,4 +1,8 @@
-<meta name="google-site-verification" content="6AJYBV2aIm1Q7igw7_4O20TAPuBRF2v5VeeSXGcJt2A" />
+<html>
+  <head>
+    <meta name="google-site-verification" content="6AJYBV2aIm1Q7igw7_4O20TAPuBRF2v5VeeSXGcJt2A" />
+  </head>
+
 
 # avro-bangla-autocorrect-dictionary
 The Avro Keyboard is a blessing when it comes to type in Bangla. However, the built-in autocorrect dictionary in the Avro keyboard doesn't contain enough words (2473 words to be exact). And, considering the huge volume and the complex spelling rules of Bangla words, it's not quite handy while someone is typing fast or doesn't know enough about Bangla spelling. So, this is my tiny approach to enrich the autocorrect dictionary. This file contains the correct spellings of the most commonly used Bangla words (and the words that are generally mistaken).<br> 
