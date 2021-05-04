@@ -1,5 +1,6 @@
 # avro-bangla-autocorrect-dictionary
-<quote>The built in autocorrect dictionary in avro Bangla keyboard doesn't contain enough word. So, this is my approach to enrich the dictionary. This file contains the correct spelling of commonly used Bangla words.</quote>
+<quote>The Avro Keyboard is a blessing while it comes to type in Bangla. However, the built-in autocorrect dictionary in the Avro keyboard is outdated and, doesn't contain enough words (2473 words to be exact). And, it's not near enough while considering the huge volume and the complex spelling rules of Bangla words. Therefore, it's not quite handy while someone is typing fast or doesn't know enough about Bangla spelling. So, this is my tiny approach (as a tribute to the creators of the Avro Keyboard) to enrich the autocorrect dictionary. This file contains the correct spellings of the most commonly used Bangla words (and the words that are generally mistaken).<br> 
+It also contains the Bangla spelling of some commonly used English words. So, if you're not sure about the Bangla spelling of an English word, just type it in English (if the file contains the word, it'll give you the correct answer). </quote>
 
 <h3>Update log:</h3>
 <I>update: 04-05-21, <b>1469</b> new words added</I><br>
@@ -9,7 +10,8 @@
 <h1>To use the Dictionary file</h1>
 
 <h2> <b>First: right click on avro icon 
-then go to: tools > Avro Phonetic Options > Edit/Import Autocorrect Entries</b></h2>
+then go to: tools > Avro Phonetic Options > Edit/Import Auto Correct Entries.<br>
+  Also check the 'Dictionary mode is default in suggestion' field and don't forget to 'Enable Auto Correct', as shown below.</b></h2>
 
 ![img 1](https://github.com/Botbang/avro-bangla-autocorrect-dictionary/blob/main/shot%201.png)
 
