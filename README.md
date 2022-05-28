@@ -10,9 +10,10 @@ It also contains the Bangla spelling of some commonly used English words. So, if
 ***
 
 <h3>Update log:</h3>
+<I>update: 10-05-22, <b>250</b> new words added</I><br>
 <I>update: 04-05-21, <b>1469</b> new words added</I><br>
 <I>update: 02-05-21, <b>1000</b> new words added</I><br>
-<I>Current dictionary size: <b>4949 words</b></I><br>
+<I>Current dictionary size: <b>5208 words</b></I><br>
 
 ***
 
@@ -35,3 +36,5 @@ then go to: tools > Avro Phonetic Options > Edit/Import Auto Correct Entries.<br
 ***
 
 <h1>Enjoy!</h1>
+
+© 2022 - <a href="https://www.facebook.com/afnan.hossain.0">BOTBANG</a>
