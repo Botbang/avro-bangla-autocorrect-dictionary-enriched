@@ -36,3 +36,5 @@ then go to: tools > Avro Phonetic Options > Edit/Import Auto Correct Entries.<br
 ***
 
 <h1>Enjoy!</h1>
+
+© 2022 - <a href="https://www.facebook.com/afnan.hossain.0">BOTBANG</a>
