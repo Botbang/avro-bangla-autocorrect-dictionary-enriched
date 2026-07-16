@@ -1,41 +1,67 @@
-# avro-bangla-autocorrect-dictionary
-The Avro Keyboard is a blessing when it comes to typing in Bangla. However, the built-in autocorrect dictionary in the Avro keyboard doesn't contain enough words (2473 words to be exact). And, considering the huge volume and the complex spelling rules of Bangla words, it's not quite handy when someone is typing fast or doesn't know enough about Bangla spelling. So, this is my tiny approach to enriching the autocorrect dictionary. This file contains the correct spellings of the most commonly used Bangla words (and the words that are generally mistaken).<br> 
+# Avro Bangla Autocorrect Dictionary
 
-It also contains the Bangla spelling of some commonly used English words. So, if you're not sure about the Bangla spelling of an English word, just type it in English (if the file contains the word, it'll give you the correct spelling).<br>
+An enriched autocorrect dictionary for [Avro Keyboard](https://www.omicronlab.com/avro-keyboard.html), curated to make everyday Bangla typing faster and more reliable.
 
-***
+[![Dictionary entries](https://img.shields.io/badge/unique%20input%20keys-5%2C495-0b6bcb)](./autodict.dct)
+[![Source book](https://img.shields.io/badge/source-book%20included-e7a72e)](./books/government-standard-bangla-and-practical-bangla-2nd-edition.pdf)
+[![Website](https://img.shields.io/badge/GitHub%20Pages-visit-167d71)](https://afnan-hossain.github.io/avro-bangla-autocorrect-dictionary-enriched/)
 
-> <I>This work is a tribute to the creator and the developers of the Avro Keyboard.</I> 
+## About the project
 
-***
+Avro Keyboard's bundled autocorrect dictionary is useful but limited for the breadth and complexity of Bangla spelling. This project expands it with commonly used words, frequently confused spellings, and selected English-to-Bangla entries.
 
-<h3>Update log:</h3>
-<I>update: 06-12-23, <b>209</b> new words added</I><br>
-<I>update: 10-05-22, <b>250</b> new words added</I><br>
-<I>update: 04-05-21, <b>1469</b> new words added</I><br>
-<I>update: 02-05-21, <b>1000</b> new words added</I><br>
-<I>Current dictionary size: <b>5417 words</b></I><br>
+The current dictionary contains **5,495 unique input keys**. It is distributed in Avro's importable `autodict.dct` format.
 
-***
+> This work is a tribute to the creator and developers of Avro Keyboard.
 
-<h1>To use the Dictionary file</h1>
+## Source-book foundation
 
-<h2> <b>First: right-click on Avro icon 
-then go to tools > Avro Phonetic Options > Edit/Import AutoCorrect Entries.<br>
-  Also, check the 'Dictionary mode is the default in suggestion' field and don't forget to 'Enable Auto Correct', as shown below.</b></h2>
+This project's systematic enrichment work follows the second-edition government reference volume containing:
 
-![img 1](https://github.com/Botbang/avro-bangla-autocorrect-dictionary/blob/main/shot%201.png)
-***
-<h2> 
-  <I>Then,</I><br>
-  <b>click on Import and select the autodict.dct file</b> </h2>
+- **সরকারি কাজে প্রমিত বাংলা ব্যবহারের নিয়ম**
+- **সরকারি কাজে ব্যবহারিক বাংলা**
 
-![img 2](https://github.com/Botbang/avro-bangla-autocorrect-dictionary/blob/main/shot%202.png)
+The volume was published by the **Bangla Language Implementation Cell, Reform and Research Division, Ministry of Public Administration, Bangladesh Secretariat, Dhaka**. A copy of the exact source volume used by this project is included for transparency and reproducibility.
 
-<h3>and you should be good to go.</h3>
+[Read or download the source book (PDF)](./books/government-standard-bangla-and-practical-bangla-2nd-edition.pdf)
 
-***
+The book uses a legacy ANSI Bangla font. Its text therefore requires visual OCR and verification; embedded PDF text is not treated as authoritative.
 
-<h1>Enjoy!</h1>
+## Downloads
 
-© 2024 - <a href="https://www.facebook.com/afnan.hossain.0">BOTBANG</a>
+| File | Purpose |
+| --- | --- |
+| [`autodict.dct`](./autodict.dct?raw=1) | Importable Avro autocorrect dictionary |
+| [Government Bangla reference, 2nd edition](./books/government-standard-bangla-and-practical-bangla-2nd-edition.pdf?raw=1) | Source book used for systematic enrichment |
+
+## Install in Avro Keyboard
+
+1. Right-click the Avro icon.
+2. Open **Tools → Avro Phonetic Options → Edit/Import Auto Correct Entries**.
+3. Enable **Dictionary mode is default in suggestion** and **Enable Auto Correct**.
+4. Select **Import**, choose `autodict.dct`, and confirm.
+
+![Open Avro's autocorrect settings](./shot%201.png)
+
+![Import the dictionary file](./shot%202.png)
+
+> Avro warns against editing this format by hand. Import the file through Avro's interface unless you understand its internal phonetic representation.
+
+## Update history
+
+| Date | Words added |
+| --- | ---: |
+| 2023-12-06 | 209 |
+| 2022-05-10 | 250 |
+| 2021-05-04 | 1,469 |
+| 2021-05-02 | 1,000 |
+
+The source-book enrichment is the next major expansion and is being processed with OCR plus manual-quality validation.
+
+## Project links
+
+- [Project website](https://afnan-hossain.github.io/avro-bangla-autocorrect-dictionary-enriched/)
+- [Report an issue](https://github.com/afnan-hossain/avro-bangla-autocorrect-dictionary-enriched/issues)
+- [BOTBANG on Facebook](https://www.facebook.com/afnan.hossain.0)
+
+© 2026 Afnan Hossain / BOTBANG. Avro Keyboard and the source publication belong to their respective owners and publishers.
