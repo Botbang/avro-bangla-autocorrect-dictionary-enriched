@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://afnan-hossain.github.io/avro-bangla-autocorrect-dictionary-enriched/sitemap.xml
