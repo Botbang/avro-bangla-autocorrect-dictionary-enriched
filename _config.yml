@@ -1,1 +1,5 @@
-theme: jekyll-theme-cayman
+title: Avro Bangla Autocorrect Dictionary
+description: A carefully enriched Avro Keyboard autocorrect dictionary with a transparent government source-book foundation.
+url: https://afnan-hossain.github.io
+baseurl: /avro-bangla-autocorrect-dictionary-enriched
+lang: en

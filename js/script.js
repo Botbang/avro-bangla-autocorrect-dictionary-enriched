@@ -1,122 +1,73 @@
-//Navbar Toggle
+(() => {
+  const header = document.querySelector('[data-header]');
+  const progress = document.querySelector('[data-scroll-progress]');
+  const menuButton = document.querySelector('[data-menu-button]');
+  const nav = document.querySelector('[data-nav]');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-$('.navbar-toggle').click(function(){
-  if( $(this).hasClass('collapsed') ){
-    $(this).removeClass('collapsed');
-  }else{
-    $(this).addClass('collapsed');
+  const updateScrollState = () => {
+    const top = window.scrollY;
+    const available = document.documentElement.scrollHeight - window.innerHeight;
+    header?.classList.toggle('is-scrolled', top > 24);
+    if (progress) progress.style.width = `${available > 0 ? Math.min(100, (top / available) * 100) : 0}%`;
+  };
+
+  const closeMenu = () => {
+    menuButton?.setAttribute('aria-expanded', 'false');
+    nav?.classList.remove('is-open');
+  };
+
+  menuButton?.addEventListener('click', () => {
+    const opening = menuButton.getAttribute('aria-expanded') !== 'true';
+    menuButton.setAttribute('aria-expanded', String(opening));
+    nav?.classList.toggle('is-open', opening);
+  });
+
+  nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMenu();
+  });
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 820) closeMenu();
+  });
+
+  document.querySelectorAll('[data-year]').forEach((node) => {
+    node.textContent = new Date().getFullYear();
+  });
+
+  const reveals = document.querySelectorAll('.reveal');
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    reveals.forEach((node) => node.classList.add('is-visible'));
+  } else {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -30px' });
+    reveals.forEach((node) => revealObserver.observe(node));
   }
- })
- 
- 
-// Back to top Arrow
- 
- jQuery(document).ready(function($){
-	// browser window scroll (in pixels) after which the "back to top" link is shown
-	var offset = 300,
-		//browser window scroll (in pixels) after which the "back to top" link opacity is reduced
-		offset_opacity = 1200,
-		//duration of the top scrolling animation (in ms)
-		scroll_top_duration = 700,
-		//grab the "back to top" link
-		$back_to_top = $('.cd-top, .top');
 
-	//hide or show the "back to top" link
-	$(window).scroll(function(){
-		( $(this).scrollTop() > offset ) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
-		if( $(this).scrollTop() > offset_opacity ) { 
-			$back_to_top.addClass('cd-fade-out');
-		}
-	});
+  const counter = document.querySelector('[data-target]');
+  if (counter && !reduceMotion && 'IntersectionObserver' in window) {
+    const target = Number(counter.dataset.target);
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+      if (!entries[0].isIntersecting) return;
+      const started = performance.now();
+      const duration = 1100;
+      const animate = (now) => {
+        const progressValue = Math.min(1, (now - started) / duration);
+        const eased = 1 - Math.pow(1 - progressValue, 3);
+        counter.textContent = Math.round(target * eased).toLocaleString('en-US');
+        if (progressValue < 1) requestAnimationFrame(animate);
+      };
+      requestAnimationFrame(animate);
+      observer.disconnect();
+    }, { threshold: 0.8 });
+    counterObserver.observe(counter);
+  }
 
-	//smooth scroll to top
-	$back_to_top.on('click', function(event){
-		event.preventDefault();
-		$('body,html').animate({
-			scrollTop: 0 ,
-		 	}, scroll_top_duration
-		);
-	});
-
-});
-
-
-// handle links with @href started with '#' only
-$(document).on('click', 'a[href^="#"]', function(e) {
-    // target element id
-    var id = $(this).attr('href');
-
-    // target element
-    var $id = $(id);
-    if ($id.length === 0) {
-        return;
-    }
-
-    // prevent standard hash navigation (avoid blinking in IE)
-    e.preventDefault();
-
-    // top position relative to the document
-    var pos = $(id).offset().top;
-
-    // animated top scrolling
-    $('body, html').animate({scrollTop: pos});
-});
-
-var TxtType = function(el, toRotate, period) {
-        this.toRotate = toRotate;
-        this.el = el;
-        this.loopNum = 0;
-        this.period = parseInt(period, 10) || 2000;
-        this.txt = '';
-        this.tick();
-        this.isDeleting = false;
-    };
-
-    TxtType.prototype.tick = function() {
-        var i = this.loopNum % this.toRotate.length;
-        var fullTxt = this.toRotate[i];
-
-        if (this.isDeleting) {
-        this.txt = fullTxt.substring(0, this.txt.length - 1);
-        } else {
-        this.txt = fullTxt.substring(0, this.txt.length + 1);
-        }
-
-        this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
-
-        var that = this;
-        var delta = 200 - Math.random() * 100;
-
-        if (this.isDeleting) { delta /= 2; }
-
-        if (!this.isDeleting && this.txt === fullTxt) {
-        delta = this.period;
-        this.isDeleting = true;
-        } else if (this.isDeleting && this.txt === '') {
-        this.isDeleting = false;
-        this.loopNum++;
-        delta = 500;
-        }
-
-        setTimeout(function() {
-        that.tick();
-        }, delta);
-    };
-
-    window.onload = function() {
-        var elements = document.getElementsByClassName('typewrite');
-        for (var i=0; i<elements.length; i++) {
-            var toRotate = elements[i].getAttribute('data-type');
-            var period = elements[i].getAttribute('data-period');
-            if (toRotate) {
-              new TxtType(elements[i], JSON.parse(toRotate), period);
-            }
-        }
-        // INJECT CSS
-        var css = document.createElement("style");
-        css.type = "text/css";
-        css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #000}";
-        document.body.appendChild(css);
-    };
- 
-
+  updateScrollState();
+  window.addEventListener('scroll', updateScrollState, { passive: true });
+})();

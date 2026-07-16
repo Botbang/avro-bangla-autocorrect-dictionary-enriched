@@ -1,15 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?><!--Avro Bangla Auto Correct Dictionary-->
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://botbang.github.io/avro-bangla-autocorrect-dictionary-enriched/</loc>
-    <lastmod>2021-05-04</lastmod>
-    <changefreq>daily</changefreq>
+    <loc>https://afnan-hossain.github.io/avro-bangla-autocorrect-dictionary-enriched/</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://botbang.github.io/avro-bangla-autocorrect-dictionary-enriched/style.css</loc>
-    <lastmod>2021-05-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
   </url>
 </urlset>

@@ -1,607 +1,306 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta name="google-site-verification" content="6AJYBV2aIm1Q7igw7_4O20TAPuBRF2v5VeeSXGcJt2A" />
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avro Bangla Auto Correct Dictionary</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Hind Siliguri', sans-serif;
-            scroll-behavior: smooth;
-            background-color: #e6e7ee;
-        }
-        /* Global Interactive Elements */
-        * {
-            transition: all 0.2s ease;
-        }
-        
-        /* Navigation */
-        .nav-link {
-            position: relative;
-            transition: color 0.2s ease;
-        }
-        .nav-link:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: currentColor;
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover {
-            transform: translateY(-2px);
-            color: #4f46e5;
-        }
-        .nav-link:hover:after {
-            width: 100%;
-        }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="6AJYBV2aIm1Q7igw7_4O20TAPuBRF2v5VeeSXGcJt2A">
+  <title>Avro Bangla Autocorrect Dictionary</title>
+  <meta name="description" content="A carefully enriched Avro Keyboard autocorrect dictionary, grounded in Bangladesh's government reference books for standard and practical Bangla.">
+  <meta name="theme-color" content="#123c32">
+  <link rel="canonical" href="https://afnan-hossain.github.io/avro-bangla-autocorrect-dictionary-enriched/">
 
-        /* Buttons */
-        .btn {
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        .btn:active {
-            transform: translateY(0);
-        }
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Avro Bangla Autocorrect Dictionary">
+  <meta property="og:description" content="শুদ্ধ বাংলা, এখন আরও দ্রুত — 5,495 unique input keys and a transparent government source-book foundation.">
+  <meta property="og:url" content="https://afnan-hossain.github.io/avro-bangla-autocorrect-dictionary-enriched/">
+  <meta property="og:image" content="https://raw.githubusercontent.com/afnan-hossain/avro-bangla-autocorrect-dictionary-enriched/gh-pages/Avro%20Keyboard%20splash%20screen%20reimagined.webp">
+  <meta name="twitter:card" content="summary_large_image">
 
-        /* Cards */
-        .card {
-            transition: all 0.3s ease, transform 0.2s ease;
-        }
-        .card:hover {
-            transform: translateY(-5px) scale(1.01);
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
-        }
-
-        /* Images */
-        img {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
-        }
-
-        /* Tables */
-        tr {
-            transition: background-color 0.2s ease;
-        }
-        tr:hover {
-            background-color: rgba(79, 70, 229, 0.05);
-        }
-
-        /* Icons */
-        [data-feather] {
-            transition: all 0.2s ease;
-        }
-        [data-feather]:hover {
-            transform: scale(1.1);
-        }
-
-        /* Form Elements */
-        input, textarea, select {
-            transition: all 0.2s ease;
-        }
-        input:hover, textarea:hover, select:hover {
-            border-color: #4f46e5;
-        }
-        input:focus, textarea:focus, select:focus {
-            transform: scale(1.01);
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
-        }
-
-        /* Footer Links */
-        footer a {
-            position: relative;
-        }
-        footer a:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1px;
-            bottom: 0;
-            left: 0;
-            background-color: white;
-            transition: width 0.3s ease;
-        }
-        footer a:hover:after {
-            width: 100%;
-        }
-        /* Neumorphism Styles */
-        .neumorphic {
-            border-radius: 12px;
-            background: #e6e7ee;
-            box-shadow:  8px 8px 16px #d1d2d9, 
-                        -8px -8px 16px #fbfcff;
-        }
-        .neumorphic-inset {
-            border-radius: 12px;
-            background: #e6e7ee;
-            box-shadow: inset 8px 8px 16px #d1d2d9, 
-                       inset -8px -8px 16px #fbfcff;
-        }
-        .neumorphic-btn {
-            color: #090909;
-            padding: 0.7em 1.7em;
-            font-size: 18px;
-            border-radius: 0.5em;
-            background: #e8e8e8;
-            cursor: pointer;
-            border: 1px solid #e8e8e8;
-            transition: all 0.3s;
-            box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
-        }
-        .neumorphic-btn:active {
-            color: #666;
-            box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
-        }
-        .neumorphic-card {
-            border-radius: 16px;
-            background: #e6e7ee;
-            box-shadow:  12px 12px 24px #d1d2d9, 
-                        -12px -12px 24px #fbfcff;
-            transition: all 0.3s ease;
-        }
-        .neumorphic-card:hover {
-            box-shadow:  8px 8px 16px #d1d2d9, 
-                        -8px -8px 16px #fbfcff;
-        }
-    </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
 </head>
-<body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class="bg-white/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <div class="flex items-center">
-                    <a href="#" class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-blue-500 hover:from-indigo-700 hover:to-blue-600 transition-colors">
-                        Avro Bangla Autocorrect Dictionary
-                    </a>
-                </div>
-                <div class="hidden md:flex items-center space-x-1">
-                    <a href="#about" class="px-4 py-3 rounded-lg font-medium text-gray-700 hover:text-indigo-600 hover:bg-indigo-50/50 transition-all duration-300 flex items-center">
-                        <i data-feather="info" class="w-4 h-4 mr-2"></i> About
-                    </a>
-                    <a href="#download" class="px-4 py-3 rounded-lg font-medium text-gray-700 hover:text-indigo-600 hover:bg-indigo-50/50 transition-all duration-300 flex items-center">
-                        <i data-feather="download" class="w-4 h-4 mr-2"></i> Download
-                    </a>
-                    <a href="#update" class="px-4 py-3 rounded-lg font-medium text-gray-700 hover:text-indigo-600 hover:bg-indigo-50/50 transition-all duration-300 flex items-center">
-                        <i data-feather="list" class="w-4 h-4 mr-2"></i> Updates
-                    </a>
-                    <a href="#how-to" class="px-4 py-3 rounded-lg font-medium text-gray-700 hover:text-indigo-600 hover:bg-indigo-50/50 transition-all duration-300 flex items-center">
-                        <i data-feather="help-circle" class="w-4 h-4 mr-2"></i> Guide
-                    </a>
-                </div>
-                <div class="md:hidden flex items-center">
-                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-lg text-gray-700 transition-all neumorphic-btn" aria-controls="mobile-menu" aria-expanded="false">
-                        <i data-feather="menu" class="w-6 h-6"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
-        <!-- Mobile menu -->
-        <div class="md:hidden hidden" id="mobile-menu">
-            <div class="px-2 pt-2 pb-4 space-y-1 bg-white/95 backdrop-blur-sm">
-                <a href="#about" class="flex items-center px-3 py-3 rounded-lg text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-indigo-50/50 transition-all">
-                    <i data-feather="info" class="w-5 h-5 mr-3"></i> About
-                </a>
-                <a href="#download" class="flex items-center px-3 py-3 rounded-lg text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-indigo-50/50 transition-all">
-                    <i data-feather="download" class="w-5 h-5 mr-3"></i> Download
-                </a>
-                <a href="#update" class="flex items-center px-3 py-3 rounded-lg text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-indigo-50/50 transition-all">
-                    <i data-feather="list" class="w-5 h-5 mr-3"></i> Updates
-                </a>
-                <a href="#how-to" class="flex items-center px-3 py-3 rounded-lg text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-indigo-50/50 transition-all">
-                    <i data-feather="help-circle" class="w-5 h-5 mr-3"></i> Guide
-                </a>
-            </div>
-        </div>
-    </nav>
+  <header class="site-header" data-header>
+    <div class="shell nav-wrap">
+      <a class="brand" href="#top" aria-label="Avro Bangla Autocorrect Dictionary home">
+        <span class="brand-mark" lang="bn">অ</span>
+        <span class="brand-copy">
+          <strong>Avro Bangla</strong>
+          <span>Autocorrect Dictionary</span>
+        </span>
+      </a>
 
-    <!-- Hero Section -->
-    <div class="relative h-screen max-h-[90vh] min-h-[600px] flex items-center justify-center overflow-hidden group">
-        <div class="absolute inset-0 bg-black/50">
-            <img src="https://github.com/Botbang/avro-bangla-autocorrect-dictionary-enriched/blob/gh-pages/Avro%20Keyboard%20splash%20screen%20reimagined.webp?raw=true" 
-                 class="w-full h-full object-cover object-center" 
-                 alt="Language Day Background"
-                 loading="eager">
-            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjojMDAwMDAwIj48cGF0aCBkPSJNMCAwaDQwdjQwSDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTExIDE5aDJ2M2gtMnptLTkgMGgydjNoLTJ6bTQgMGgydjNoLTJ6bTUgMGgydjNoLTJ6bTQgMGgydjNoLTJ6bTQgMGgydjNoLTJ6bTUgMGgydjNoLTJ6IiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIuMDUiLz48L3N2Zz4=')] opacity-20"></div>
-            <div class="absolute inset-0 bg-black/50"></div>
-        </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <div class="space-y-8 px-6 py-16 bg-black/30 backdrop-blur-sm rounded-3xl border border-white/10">
-                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight" data-aos="fade-up">
-                    <span class="block bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">Avro Bangla</span>
-                    <span class="text-white">Autocorrect Dictionary</span>
-                </h1>
-                <p class="text-2xl text-white/90 max-w-2xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="100">
-                    Enhanced dictionary for flawless Bangla typing experience
-                </p>
-                <div data-aos="fade-up" data-aos-delay="200">
-                    <a href="#download" class="inline-flex items-center px-8 py-4 bg-gray-800 hover:bg-gray-900 text-white text-lg font-medium rounded-full hover:-translate-y-1 hover:scale-105 transition-transform">
-                        Download Now
-                        <i data-feather="arrow-down-circle" class="ml-3 w-6 h-6"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce" data-aos="fade-up" data-aos-delay="300">
-            <a href="#download" class="text-white/80 hover:text-white transition-colors">
-                <i data-feather="chevron-down" class="w-8 h-8"></i>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-button>
+        <span class="sr-only">Open navigation</span>
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation" data-nav>
+        <a href="#foundation">Source book</a>
+        <a href="#inside">Inside</a>
+        <a href="#guide">Install</a>
+        <a href="#history">History</a>
+        <a class="nav-download" href="https://raw.githubusercontent.com/afnan-hossain/avro-bangla-autocorrect-dictionary-enriched/main/autodict.dct" download>Download .dct</a>
+      </nav>
+    </div>
+    <div class="scroll-progress" data-scroll-progress></div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" id="top">
+      <div class="hero-orbit hero-orbit-one" aria-hidden="true"></div>
+      <div class="hero-orbit hero-orbit-two" aria-hidden="true"></div>
+      <div class="shell hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span></span> Open Bangla resource · community curated</p>
+          <h1 lang="bn">শুদ্ধ বাংলা,<br><em>এখন আরও দ্রুত।</em></h1>
+          <p class="hero-lead">A richer autocorrect dictionary for Avro Keyboard, built for people who care about writing Bangla correctly - even when typing quickly.</p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://raw.githubusercontent.com/afnan-hossain/avro-bangla-autocorrect-dictionary-enriched/main/autodict.dct" download>
+              <span>Download dictionary</span>
+              <span aria-hidden="true">↓</span>
             </a>
+            <a class="button button-quiet" href="#foundation">
+              <span>Explore the source</span>
+              <span aria-hidden="true">↘</span>
+            </a>
+          </div>
+
+          <div class="hero-proof" aria-label="Project statistics">
+            <div><strong id="entry-count" data-target="5495">5,495</strong><span>unique input keys</span></div>
+            <div><strong>5,303</strong><span>correction mappings</span></div>
+            <div><strong>445</strong><span>source pages</span></div>
+          </div>
         </div>
+
+        <div class="hero-visual reveal reveal-delay">
+          <div class="art-frame">
+            <img src="Avro Keyboard splash screen reimagined.webp" alt="Illustration celebrating Bangla language and an open typing culture" width="1200" height="832">
+            <div class="art-wash"></div>
+            <p class="art-caption"><span>ভাষা হোক উন্মুক্ত</span><small>Language should be open</small></p>
+          </div>
+          <div class="floating-card floating-card-top">
+            <span class="floating-icon" aria-hidden="true">✓</span>
+            <span><strong>Import ready</strong><small>Made for Avro Keyboard</small></span>
+          </div>
+          <div class="floating-card floating-card-bottom">
+            <span class="word-stack" aria-hidden="true"><i>অ</i><i>আ</i><i>ক</i></span>
+            <span><strong>বাংলা</strong><small>carefully curated</small></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="marquee" aria-label="Project values">
+      <div class="marquee-track">
+        <span>প্রমিত বানান</span><i>✦</i><span>Open resource</span><i>✦</i><span>দ্রুত টাইপিং</span><i>✦</i><span>Source-led</span><i>✦</i><span>Community curated</span>
+      </div>
+    </section>
+
+    <section class="section foundation" id="foundation">
+      <div class="shell foundation-grid">
+        <div class="book-stage reveal" aria-label="Source-book cover representation">
+          <div class="book-shadow"></div>
+          <div class="book-cover" lang="bn">
+            <span class="book-kicker">বাংলাদেশ সরকার</span>
+            <div class="book-rule"></div>
+            <h2>সরকারি কাজে<br>প্রমিত বাংলা<br>ব্যবহারের নিয়ম</h2>
+            <p>ও সরকারি কাজে ব্যবহারিক বাংলা</p>
+            <span class="book-edition">২য় সংস্করণ</span>
+            <div class="book-publisher">জনপ্রশাসন মন্ত্রণালয়<br>বাংলাদেশ সচিবালয়, ঢাকা</div>
+          </div>
+        </div>
+
+        <div class="section-copy reveal reveal-delay">
+          <p class="section-label">The project foundation</p>
+          <h2>Every expansion should have a reliable point of reference.</h2>
+          <p class="large-copy">This project’s systematic enrichment follows the second-edition government reference volume containing <span lang="bn">“সরকারি কাজে প্রমিত বাংলা ব্যবহারের নিয়ম”</span> and <span lang="bn">“সরকারি কাজে ব্যবহারিক বাংলা”</span>.</p>
+
+          <div class="source-note">
+            <span class="note-number">01</span>
+            <div>
+              <strong>Transparent source material</strong>
+              <p>The exact 445-page volume used for the project is included in the repository so the enrichment work can be reviewed and reproduced.</p>
+            </div>
+          </div>
+          <div class="source-note">
+            <span class="note-number">02</span>
+            <div>
+              <strong>OCR with visual verification</strong>
+              <p>The book uses a legacy ANSI Bangla font. Embedded text is unreliable, so entries are extracted visually and checked against the rendered pages.</p>
+            </div>
+          </div>
+
+          <div class="inline-actions">
+            <a class="text-link" href="https://github.com/afnan-hossain/avro-bangla-autocorrect-dictionary-enriched/blob/main/books/government-standard-bangla-and-practical-bangla-2nd-edition.pdf" target="_blank" rel="noreferrer">Read the source book <span aria-hidden="true">↗</span></a>
+            <a class="muted-link" href="https://raw.githubusercontent.com/afnan-hossain/avro-bangla-autocorrect-dictionary-enriched/main/books/government-standard-bangla-and-practical-bangla-2nd-edition.pdf" download>Download PDF · 3 MB</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section inside" id="inside">
+      <div class="shell">
+        <div class="section-heading reveal">
+          <div>
+            <p class="section-label">Inside the dictionary</p>
+            <h2>Small file.<br>Meaningful reach.</h2>
+          </div>
+          <p>The dictionary combines common Bangla words, frequently confused spellings, and selected English-to-Bangla inputs in Avro’s native import format.</p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card feature-card-dark reveal">
+            <span class="feature-index">01</span>
+            <div class="feature-glyph" lang="bn">অভ্র</div>
+            <h3>Native to Avro</h3>
+            <p>One importable <code>autodict.dct</code> file. No installer, extension, or account required.</p>
+          </article>
+          <article class="feature-card feature-card-red reveal reveal-delay-short">
+            <span class="feature-index">02</span>
+            <div class="correction-lines" aria-hidden="true"><span></span><span></span><span></span></div>
+            <h3>Built for correction</h3>
+            <p>Thousands of mappings help turn common typing and spelling mistakes into the intended Bangla form.</p>
+          </article>
+          <article class="feature-card feature-card-paper reveal reveal-delay">
+            <span class="feature-index">03</span>
+            <div class="book-mini" aria-hidden="true">বাংলা</div>
+            <h3>Grounded in a book</h3>
+            <p>The next expansion is being traced to a named, included source instead of an opaque word dump.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section download-section" id="download">
+      <div class="shell download-shell">
+        <div class="download-intro reveal">
+          <p class="section-label light-label">Get the files</p>
+          <h2>Ready when<br>your next word is.</h2>
+          <p>Start with the dictionary. Keep the book if you want to follow the source behind the ongoing enrichment.</p>
+        </div>
+
+        <div class="download-list reveal reveal-delay">
+          <a class="download-row" href="https://raw.githubusercontent.com/afnan-hossain/avro-bangla-autocorrect-dictionary-enriched/main/autodict.dct" download>
+            <span class="file-type">DCT</span>
+            <span class="file-copy"><strong>Avro autocorrect dictionary</strong><small>autodict.dct · 5,495 unique input keys</small></span>
+            <span class="download-arrow" aria-hidden="true">↓</span>
+          </a>
+          <a class="download-row" href="https://raw.githubusercontent.com/afnan-hossain/avro-bangla-autocorrect-dictionary-enriched/main/books/government-standard-bangla-and-practical-bangla-2nd-edition.pdf" download>
+            <span class="file-type">PDF</span>
+            <span class="file-copy"><strong>Government Bangla reference</strong><small>Second edition · 445 pages · 3 MB</small></span>
+            <span class="download-arrow" aria-hidden="true">↓</span>
+          </a>
+          <a class="download-row" href="https://github.com/afnan-hossain/avro-bangla-autocorrect-dictionary-enriched" target="_blank" rel="noreferrer">
+            <span class="file-type">GIT</span>
+            <span class="file-copy"><strong>Explore the repository</strong><small>History, source files, issues, and contributions</small></span>
+            <span class="download-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section guide" id="guide">
+      <div class="shell">
+        <div class="section-heading reveal">
+          <div>
+            <p class="section-label">Installation</p>
+            <h2>From download<br>to typing in three steps.</h2>
+          </div>
+          <p>Use Avro Keyboard’s own import screen. Your existing application handles the dictionary installation.</p>
+        </div>
+
+        <ol class="steps">
+          <li class="step reveal">
+            <div class="step-copy">
+              <span>Step 01</span>
+              <h3>Open the autocorrect editor</h3>
+              <p>Right-click the Avro icon, then choose <strong>Tools → Avro Phonetic Options → Edit/Import Auto Correct Entries</strong>.</p>
+            </div>
+            <div class="step-image">
+              <img src="https://raw.githubusercontent.com/afnan-hossain/avro-bangla-autocorrect-dictionary-enriched/main/shot%201.png" alt="Avro menu showing Edit or Import Auto Correct Entries" loading="lazy" width="922" height="438">
+            </div>
+          </li>
+          <li class="step reveal">
+            <div class="step-copy">
+              <span>Step 02</span>
+              <h3>Enable the helpful options</h3>
+              <p>Turn on <strong>Dictionary mode is default in suggestion</strong> and <strong>Enable Auto Correct</strong>.</p>
+            </div>
+            <div class="option-preview" aria-hidden="true">
+              <div><i>✓</i><span>Dictionary mode is default in suggestion</span></div>
+              <div><i>✓</i><span>Enable Auto Correct</span></div>
+            </div>
+          </li>
+          <li class="step reveal">
+            <div class="step-copy">
+              <span>Step 03</span>
+              <h3>Import and type</h3>
+              <p>Select <strong>Import</strong>, choose the downloaded <code>autodict.dct</code> file, and confirm.</p>
+            </div>
+            <div class="step-image step-image-small">
+              <img src="https://raw.githubusercontent.com/afnan-hossain/avro-bangla-autocorrect-dictionary-enriched/main/shot%202.png" alt="Avro Auto Correct Entries window with the Import button highlighted" loading="lazy" width="312" height="397">
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section history" id="history">
+      <div class="shell history-grid">
+        <div class="history-title reveal">
+          <p class="section-label">Project history</p>
+          <h2>Built one careful addition at a time.</h2>
+          <p>The source-book project is the next major chapter. Earlier public expansions remain part of the record.</p>
+        </div>
+
+        <div class="timeline reveal reveal-delay">
+          <div class="timeline-item current">
+            <time>2026</time>
+            <div><strong>Source-book foundation added</strong><p>The government reference volume is now included and documented for systematic OCR-led enrichment.</p></div>
+          </div>
+          <div class="timeline-item"><time>2023</time><div><strong>209 words added</strong><p>Published 06 December 2023.</p></div></div>
+          <div class="timeline-item"><time>2022</time><div><strong>250 words added</strong><p>Published 10 May 2022.</p></div></div>
+          <div class="timeline-item"><time>2021</time><div><strong>2,469 words added</strong><p>Two major additions published on 02 and 04 May.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing" lang="bn">
+      <div class="shell closing-inner reveal">
+        <span class="closing-mark">অ</span>
+        <p>ভুল কমুক।<br>বাংলা ছড়িয়ে পড়ুক।</p>
+        <a href="https://raw.githubusercontent.com/afnan-hossain/avro-bangla-autocorrect-dictionary-enriched/main/autodict.dct" download>অভিধান ডাউনলোড করুন <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div>
+        <a class="brand footer-brand" href="#top">
+          <span class="brand-mark" lang="bn">অ</span>
+          <span class="brand-copy"><strong>Avro Bangla</strong><span>Autocorrect Dictionary</span></span>
+        </a>
+        <p>A community-made tribute to the creator and developers of Avro Keyboard.</p>
+      </div>
+      <div class="footer-links">
+        <div><strong>Project</strong><a href="#foundation">Source book</a><a href="#guide">Install guide</a><a href="#history">History</a></div>
+        <div><strong>Connect</strong><a href="https://github.com/afnan-hossain/avro-bangla-autocorrect-dictionary-enriched" target="_blank" rel="noreferrer">GitHub</a><a href="https://github.com/afnan-hossain/avro-bangla-autocorrect-dictionary-enriched/issues" target="_blank" rel="noreferrer">Report an issue</a><a href="https://www.facebook.com/afnan.hossain.0" target="_blank" rel="noreferrer">Facebook</a></div>
+      </div>
     </div>
-
-    <!-- About Section -->
-    <div id="about" class="py-16 md:py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:text-center mb-16">
-                <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">About</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                    Enriching the Bangla Typing Experience
-                </p>
-            </div>
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6 text-lg text-gray-600" data-aos="fade-right">
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 h-6 w-6 text-indigo-500 mr-4 mt-1">
-                            <i data-feather="check-circle"></i>
-                        </div>
-                        <p>
-                            The Avro Keyboard is a blessing for Bangla typing, but its built-in autocorrect dictionary only contains 2473 words.
-                        </p>
-                    </div>
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 h-6 w-6 text-indigo-500 mr-4 mt-1">
-                            <i data-feather="check-circle"></i>
-                        </div>
-                        <p>
-                            With complex Bangla spelling rules, this enhanced dictionary helps both fast typists and those less familiar with Bangla spelling.
-                        </p>
-                    </div>
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 h-6 w-6 text-indigo-500 mr-4 mt-1">
-                            <i data-feather="check-circle"></i>
-                        </div>
-                        <p>
-                            Includes correct spellings for common Bangla words and English-to-Bangla translations for frequently used English words.
-                        </p>
-                    </div>
-                    <p class="italic text-gray-500 pt-4">
-                        This work is a tribute to the creator and developers of Avro Keyboard.
-                    </p>
-                </div>
-                <div class="relative" data-aos="fade-left">
-                    <div class="absolute -inset-4 bg-gradient-to-r from-indigo-200 to-blue-200 rounded-2xl transform -rotate-2"></div>
-                    <img src="https://github.com/Botbang/avro-bangla-autocorrect-dictionary-enriched/blob/gh-pages/Avro%20Keyboard%20splash%20screen%20reimagined.webp?raw=true" 
-                         alt="Bangla Language Art" 
-                         class="relative rounded-xl shadow-2xl border-2 border-white/10">
-                </div>
-            </div>
-        </div>
+    <div class="shell footer-bottom">
+      <span>© <span data-year>2026</span> Afnan Hossain / BOTBANG</span>
+      <span>Made for better Bangla typing.</span>
     </div>
+  </footer>
 
-    <!-- Features Section -->
-    <div class="py-16 md:py-24 bg-[#e6e7ee]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:text-center mb-16">
-                <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Why Choose</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                    What Makes It Special
-                </p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up">
-                    <div class="flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 text-indigo-600 mb-4">
-                        <i data-feather="book-open"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Comprehensive Dictionary</h3>
-                    <p class="text-gray-600">Over 5400+ carefully curated Bangla words with correct spellings for flawless typing.</p>
-                </div>
-                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="100">
-                    <div class="flex items-center justify-center h-12 w-12 rounded-full bg-green-100 text-green-600 mb-4">
-                        <i data-feather="zap"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Smart Auto-Correction</h3>
-                    <p class="text-gray-600">Automatically fixes common Bangla spelling mistakes as you type.</p>
-                </div>
-                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="200">
-                    <div class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 text-blue-600 mb-4">
-                        <i data-feather="refresh-cw"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Regular Updates</h3>
-                    <p class="text-gray-600">Continuously updated with new words and improvements based on user feedback.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Word Counter -->
-    <div class="py-24 bg-gradient-to-r from-indigo-600 to-blue-600 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjojMDAwMDAwIj48cGF0aCBkPSJNMCAwaDQwdjQwSDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTExIDE5aDJ2M2gtMnptLTkgMGgydjNoLTJ6bTQgMGgydjNoLTJ6bTUgMGgydjNoLTJ6bTQgMGgydjNoLTJ6bTQgMGgydjNoLTJ6bTUgMGgydjNoLTJ6IiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIuMDUiLz48L3N2Zz4=')]"></div>
-        </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <h2 class="text-3xl font-bold text-white mb-12" data-aos="fade-up">Our Growing Dictionary</h2>
-            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 inline-block shadow-2xl" data-aos="fade-up" data-aos-delay="100">
-                <div class="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-12">
-                    <div class="flex items-center justify-center h-20 w-20 rounded-full bg-white/20 text-white">
-                        <i data-feather="book-open" class="w-10 h-10"></i>
-                    </div>
-                    <div>
-                        <span class="block text-6xl font-bold text-white" id="wordCount">0</span>
-                        <span class="text-white/80 text-lg">Words in dictionary</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Download Section -->
-    <div id="download" class="py-16 md:py-24 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-                    Download the Autocorrect Dictionary
-                </h2>
-                <p class="mt-3 max-w-2xl mx-auto text-lg text-gray-600">
-                    Get the latest version of the enriched dictionary file
-                </p>
-            </div>
-            <div class="mt-12 grid gap-5 max-w-lg mx-auto lg:grid-cols-2 lg:max-w-none">
-                <div class="flex flex-col rounded-lg overflow-hidden neumorphic-card" data-aos="fade-up">
-                    <div class="flex-1 p-6 flex flex-col justify-between">
-                        <div class="flex-1">
-                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white mx-auto">
-                                <i data-feather="download"></i>
-                            </div>
-                            <h3 class="mt-4 text-xl font-semibold text-gray-900 text-center">Dictionary File</h3>
-                            <p class="mt-3 text-base text-gray-500 text-center">
-                                The complete autocorrect dictionary file for Avro Keyboard
-                            </p>
-                        </div>
-                        <div class="mt-6">
-                            <a href="https://github.com/Botbang/avro-bangla-autocorrect-dictionary-enriched/raw/refs/heads/main/autodict.dct" class="w-full flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 btn">
-                                Download Now
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col rounded-lg overflow-hidden neumorphic-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="flex-1 p-6 flex flex-col justify-between">
-                        <div class="flex-1">
-                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gray-800 text-white mx-auto">
-                                <i data-feather="github"></i>
-                            </div>
-                            <h3 class="mt-4 text-xl font-semibold text-gray-900 text-center">GitHub Repository</h3>
-                            <p class="mt-3 text-base text-gray-500 text-center">
-                                Contribute or report issues on GitHub
-                            </p>
-                        </div>
-                        <div class="mt-6">
-                            <a href="https://github.com/Botbang/avro-bangla-autocorrect-dictionary-enriched" target="_blank" class="w-full flex items-center justify-center px-4 py-2 text-base font-medium rounded-full text-white bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-800 hover:to-gray-900 btn">
-                                Visit GitHub
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Update Log Section -->
-    <div id="update" class="py-16 md:py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:text-center">
-                <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">Update Log</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                    Version History
-                </p>
-            </div>
-            <div class="mt-12">
-                <div class="max-w-4xl mx-auto">
-                    <div class="neumorphic-card overflow-hidden">
-                        <div class="grid md:grid-cols-5 border-b border-gray-100 bg-gray-50 text-gray-500 text-sm font-medium">
-                            <div class="p-4">Version</div>
-                            <div class="p-4">Date</div>
-                            <div class="p-4">Words Added</div>
-                            <div class="p-4 md:col-span-2">Details</div>
-                        </div>
-                        <div class="divide-y divide-gray-100">
-                            <div class="grid md:grid-cols-5 hover:bg-gray-50 transition-colors" data-aos="fade-up">
-                                <div class="p-4 font-medium">v2.1</div>
-                                <div class="p-4 text-gray-600">06-12-23</div>
-                                <div class="p-4 text-indigo-600 font-medium">209</div>
-                                <div class="p-4 text-gray-600 md:col-span-2">Added modern Bangla tech terms and phrases</div>
-                            </div>
-                            <div class="grid md:grid-cols-5 hover:bg-gray-50 transition-colors" data-aos="fade-up" data-aos-delay="100">
-                                <div class="p-4 font-medium">v2.0</div>
-                                <div class="p-4 text-gray-600">10-05-22</div>
-                                <div class="p-4 text-indigo-600 font-medium">250</div>
-                                <div class="p-4 text-gray-600 md:col-span-2">Expanded literary and academic vocabulary</div>
-                            </div>
-                            <div class="grid md:grid-cols-5 hover:bg-gray-50 transition-colors" data-aos="fade-up" data-aos-delay="200">
-                                <div class="p-4 font-medium">v1.1</div>
-                                <div class="p-4 text-gray-600">04-05-21</div>
-                                <div class="p-4 text-indigo-600 font-medium">1469</div>
-                                <div class="p-4 text-gray-600 md:col-span-2">Major expansion of common usage words</div>
-                            </div>
-                            <div class="grid md:grid-cols-5 hover:bg-gray-50 transition-colors" data-aos="fade-up" data-aos-delay="300">
-                                <div class="p-4 font-medium">v1.0</div>
-                                <div class="p-4 text-gray-600">02-05-21</div>
-                                <div class="p-4 text-indigo-600 font-medium">1000</div>
-                                <div class="p-4 text-gray-600 md:col-span-2">Initial release with core vocabulary</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- How to Use Section -->
-    <div id="how-to" class="py-16 md:py-24 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:text-center">
-                <h2 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">How to Use</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                    Installation Guide
-                </p>
-            </div>
-            <div class="mt-12">
-                <div class="max-w-4xl mx-auto">
-                    <div class="space-y-10">
-                        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl card" data-aos="fade-up">
-                            <div class="flex items-center mb-6">
-                                <span class="flex items-center justify-center w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 font-bold mr-4">1</span>
-                                <h3 class="text-xl font-medium text-gray-900">Open Avro Settings</h3>
-                            </div>
-                            <div class="pl-14">
-                                <p class="text-gray-600 mb-4">Right click on the Avro icon, then go to: Tools > Avro Phonetic Options > Edit/Import AutoCorrect Entries.</p>
-                                <p class="text-gray-600 mb-6">Also, check the 'Dictionary mode is the default in suggestion' field and don't forget to 'Enable Auto Correct'.</p>
-                                <img src="https://raw.githubusercontent.com/Botbang/avro-bangla-autocorrect-dictionary-enriched/main/shot%201.png" 
-                                     alt="Avro Settings" 
-                                     class="rounded-lg border border-gray-200 shadow-sm">
-                            </div>
-                        </div>
-                        <div class="bg-white p-8 rounded-xl shadow-lg" data-aos="fade-up" data-aos-delay="100">
-                            <div class="flex items-center mb-6">
-                                <span class="flex items-center justify-center w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 font-bold mr-4">2</span>
-                                <h3 class="text-xl font-medium text-gray-900">Import the Dictionary</h3>
-                            </div>
-                            <div class="pl-14">
-                                <p class="text-gray-600 mb-6">Click on Import and select the autodict.dct file you downloaded from this website.</p>
-                                <img src="https://raw.githubusercontent.com/Botbang/avro-bangla-autocorrect-dictionary-enriched/main/shot%202.png" 
-                                     alt="Import Dictionary" 
-                                     class="rounded-lg border border-gray-200 shadow-sm">
-                            </div>
-                        </div>
-                        <div class="bg-white p-8 rounded-xl shadow-lg" data-aos="fade-up" data-aos-delay="200">
-                            <div class="flex items-center mb-6">
-                                <span class="flex items-center justify-center w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 font-bold mr-4">3</span>
-                                <h3 class="text-xl font-medium text-gray-900">Enjoy Typing!</h3>
-                            </div>
-                            <div class="pl-14">
-                                <p class="text-gray-600 mb-4">You're all set! Now you can enjoy a much improved Bangla typing experience with enhanced autocorrect.</p>
-                                <div class="mt-6 p-4 bg-green-50 rounded-lg border border-green-100 text-green-700 flex items-start">
-                                    <i data-feather="check-circle" class="flex-shrink-0 w-5 h-5 mt-0.5 mr-3"></i>
-                                    <p>Pro Tip: Restart Avro Keyboard for changes to take effect immediately.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="bg-[#2d3748] neumorphic-inset">
-        <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-white font-semibold uppercase tracking-wider">Dictionary</h3>
-                    <ul class="mt-4 space-y-2">
-                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About</a></li>
-                        <li><a href="#download" class="text-gray-400 hover:text-white transition-colors">Download</a></li>
-                        <li><a href="#update" class="text-gray-400 hover:text-white transition-colors">Updates</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-white font-semibold uppercase tracking-wider">Resources</h3>
-                    <ul class="mt-4 space-y-2">
-                        <li><a href="#how-to" class="text-gray-400 hover:text-white transition-colors">Install Guide</a></li>
-                        <li><a href="https://github.com/Botbang/avro-bangla-autocorrect-dictionary-enriched" target="_blank" class="text-gray-400 hover:text-white transition-colors">GitHub</a></li>
-                    </ul>
-                </div>
-                <div class="col-span-2">
-                    <h3 class="text-white font-semibold uppercase tracking-wider">Connect</h3>
-                    <div class="mt-4 flex space-x-6">
-                        <a href="https://www.facebook.com/afnan.hossain.0" target="_blank" class="text-gray-400 hover:text-white transition-colors hover:scale-110">
-                            <i data-feather="facebook" class="w-6 h-6"></i>
-                        </a>
-                        <a href="https://github.com/Botbang" target="_blank" class="text-gray-400 hover:text-white transition-colors hover:scale-110">
-                            <i data-feather="github" class="w-6 h-6"></i>
-                        </a>
-                    </div>
-                    <div class="mt-8">
-                        <p class="text-gray-400">
-                            &copy; <script>document.write(new Date().getFullYear())</script> Avro Bangla Auto Correct Dictionary. All rights reserved.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
-
-        // Mobile menu toggle
-        const mobileMenuButton = document.querySelector('[aria-controls="mobile-menu"]');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        mobileMenuButton.addEventListener('click', () => {
-            const expanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-            mobileMenuButton.setAttribute('aria-expanded', !expanded);
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        feather.replace();
-
-        // Intersection Observer for word counter animation
-        const wordCountElement = document.getElementById('wordCount');
-        const targetCount = 5417;
-        const duration = 2000; // 2 seconds
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const startTime = performance.now();
-                    
-                    function animateCount(currentTime) {
-                        const elapsedTime = currentTime - startTime;
-                        const progress = Math.min(elapsedTime / duration, 1);
-                        const currentCount = Math.floor(progress * targetCount);
-                        
-                        wordCountElement.textContent = currentCount.toLocaleString();
-                        
-                        if (progress < 1) {
-                            requestAnimationFrame(animateCount);
-                        } else {
-                            wordCountElement.textContent = targetCount.toLocaleString();
-                        }
-                    }
-                    
-                    requestAnimationFrame(animateCount);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        if (wordCountElement) {
-            observer.observe(wordCountElement);
-        }
-    </script>
+  <script src="js/script.js" defer></script>
 </body>
 </html>
